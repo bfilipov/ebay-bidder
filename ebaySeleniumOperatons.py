@@ -72,12 +72,10 @@ def bidOnItems(driver,searchItems,bidAmmount=0.06):
                 act.perform() 
                 
             except Exception as e:
-                print(e)
-                pass
+                print(e)                
                 
             if driver.find_elements_by_xpath("//*[contains(@id, 'but_v4-0')]"):
                 try:
                     driver.find_element_by_id("but_v4-0").click()
                 except Exception as e:
                     print(e)
-                    pass
