@@ -31,5 +31,4 @@ urls = [
 
 if __name__ == "__main__":
     eso.signin(driver,emailUsed,passswordUsed)
-    a = eso.findSearchItems(urls,amountForSearch)
-    eso.bidOnItems(driver,a,actualBidAmmount)
+    eso.bidOnItems(driver,eso.findSearchItems(urls,amountForSearch),actualBidAmmount)
