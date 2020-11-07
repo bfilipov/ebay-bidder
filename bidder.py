@@ -1,24 +1,4 @@
-from selenium import webdriver
-import ebaySeleniumOperatons as Eso
-
-# Globals
-amountForSearch = 0.26  # in usd #double
-actualBidAmount = 0.32  # in usd #double
-with open('login.txt') as f:
-    lines = f.readlines()
-    # login.txt is included in .gitignore
-    # in login.txt provide #1st line - username,2nd line - password
-
-emailUsed = lines[0]
-passwordUsed = lines[1]
-# Globals
-
-# chrome webdriver
-driver = webdriver.Chrome()
-# set implicit wait for 1 second.
-driver.implicitly_wait(0)
-# use explicit waits for each element that must be clicked on.
-
+from ebaySeleniumOperatons import EbayBidder
 
 # URL LIST
 # https://www.ebay.com/sch/i.html?_odkw=fidget+-cap+-caps+-bearing+-bearings+-weight&_sop=1&_udhi=0.2&_mPrRngCbx=1&LH_FS=1&_osacat=0&_from=R40&_trksid=p2045573.m570.l1313.TR0.TRC0.H0.Xfidget+-cap+-caps+-bearing+-bearings+-weight+-yo.TRS0&_nkw=fidget+-cap+-caps+-bearing+-bearings+-weight+-yo&_sacat=0"
@@ -30,5 +10,14 @@ urls = [
 ]
 
 if __name__ == "__main__":
-    Eso.sign_in(driver, emailUsed, passwordUsed)
-    Eso.bid_on_items(driver, Eso.find_items_from_list_with_value_less_than(urls, amountForSearch), actualBidAmount)
+    search_amount = 0.26  # in usd #double
+    actual_bid_amount = 0.32  # in usd #double
+
+    bidder = EbayBidder()
+
+    # included in .gitignore login.txt // provide #1st line - username, 2nd line - password
+    with open('login.txt') as f:
+        email, password = f.readlines()
+
+    bidder.sign_in(email, password)
+    # bidder.bid_on_items(Eso.find_items_from_list_with_value_less_than(urls, search_amount), actual_bid_amount)
