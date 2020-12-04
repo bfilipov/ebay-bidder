@@ -1,4 +1,6 @@
 login.txt
+chromedriver
+proxy_auth_plugin.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

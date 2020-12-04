@@ -1,3 +1,5 @@
+import os
+
 from ebaySeleniumOperatons import EbayBidder
 
 # URL LIST
@@ -13,11 +15,13 @@ if __name__ == "__main__":
     search_amount = 0.26  # in usd #double
     actual_bid_amount = 0.32  # in usd #double
 
-    bidder = EbayBidder()
+    email = os.getenv('EBAY_EMAIL')
+    password = os.getenv('EBAY_PASSWORD')
 
-    # included in .gitignore login.txt // provide #1st line - username, 2nd line - password
-    with open('login.txt') as f:
-        email, password = f.readlines()
+    bidder = EbayBidder(proxy=True)
+
+    # check proxy
+    # bidder.get('https://www.myip.com/')
 
     bidder.sign_in(email, password)
     # bidder.bid_on_items(Eso.find_items_from_list_with_value_less_than(urls, search_amount), actual_bid_amount)
